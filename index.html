@@ -29,2160 +29,9 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     
-    <style>
-        :root {
-            /* Premium Dark Theme - Vermelho/Branco/Preto */
-            --bg-primary: #000000;
-            --bg-secondary: #0a0a0a;
-            --bg-card: #121212;
-            --bg-card-hover: #1a1a1a;
-            --text-primary: #ffffff;
-            --text-secondary: #b4b4b4;
-            --text-muted: #737373;
-
-            /* Red Palette - Cores principais da marca */
-            --red-primary: #DC143C;
-            --red-dark: #B91C1C;
-            --red-darker: #991B1B;
-            --red-light: #EF4444;
-            --red-accent: #F87171;
-
-            /* Accent Colors */
-            --accent-primary: var(--red-primary);
-            --accent-secondary: #ffffff;
-            --accent-tertiary: var(--red-dark);
-
-            /* Borders */
-            --border-color: #1f1f1f;
-            --border-light: #2a2a2a;
-            --border-accent: rgba(220, 20, 60, 0.3);
-
-            /* Gradients Premium */
-            --gradient-red-primary: linear-gradient(135deg, #DC143C 0%, #991B1B 100%);
-            --gradient-red-glow: linear-gradient(135deg, #DC143C 0%, #EF4444 50%, #DC143C 100%);
-            --gradient-dark: linear-gradient(180deg, #000000 0%, #0a0a0a 100%);
-            --gradient-overlay: linear-gradient(135deg, rgba(220, 20, 60, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%);
-
-            /* Shadows Premium com profundidade */
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
-            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
-            --shadow-xl: 0 12px 48px rgba(0, 0, 0, 0.6);
-            --shadow-red: 0 8px 32px rgba(220, 20, 60, 0.3);
-            --shadow-red-lg: 0 12px 48px rgba(220, 20, 60, 0.4);
-
-            /* Glow Effects */
-            --glow-red: 0 0 20px rgba(220, 20, 60, 0.5);
-            --glow-red-strong: 0 0 40px rgba(220, 20, 60, 0.6);
-        }
-
-        [data-theme="light"] {
-            /* Premium Light Theme - Vermelho/Branco/Preto */
-            --bg-primary: #ffffff;
-            --bg-secondary: #fafafa;
-            --bg-card: #ffffff;
-            --bg-card-hover: #f5f5f5;
-            --text-primary: #0a0a0a;
-            --text-secondary: #525252;
-            --text-muted: #737373;
-
-            /* Red Palette mantida */
-            --red-primary: #DC143C;
-            --red-dark: #B91C1C;
-            --red-darker: #991B1B;
-            --red-light: #EF4444;
-            --red-accent: #F87171;
-
-            --accent-primary: var(--red-primary);
-            --accent-secondary: #0a0a0a;
-            --accent-tertiary: var(--red-dark);
-
-            --border-color: #e5e5e5;
-            --border-light: #f0f0f0;
-            --border-accent: rgba(220, 20, 60, 0.2);
-
-            --gradient-red-primary: linear-gradient(135deg, #DC143C 0%, #991B1B 100%);
-            --gradient-red-glow: linear-gradient(135deg, #DC143C 0%, #EF4444 50%, #DC143C 100%);
-            --gradient-dark: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
-            --gradient-overlay: linear-gradient(135deg, rgba(220, 20, 60, 0.05) 0%, rgba(255, 255, 255, 0.8) 100%);
-
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
-            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
-            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.1);
-            --shadow-xl: 0 12px 48px rgba(0, 0, 0, 0.12);
-            --shadow-red: 0 8px 32px rgba(220, 20, 60, 0.15);
-            --shadow-red-lg: 0 12px 48px rgba(220, 20, 60, 0.2);
-
-            --glow-red: 0 0 20px rgba(220, 20, 60, 0.3);
-            --glow-red-strong: 0 0 40px rgba(220, 20, 60, 0.4);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Outfit', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        /* Premium Background Effects */
-        .bg-grid {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image:
-                linear-gradient(rgba(220, 20, 60, 0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(220, 20, 60, 0.02) 1px, transparent 1px);
-            background-size: 50px 50px;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .orb {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(140px);
-            pointer-events: none;
-            z-index: -1;
-            opacity: 0.4;
-            animation: orbFloat 20s ease-in-out infinite;
-        }
-
-        @keyframes orbFloat {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(30px, -30px) scale(1.1); }
-            66% { transform: translate(-30px, 30px) scale(0.9); }
-        }
-
-        .orb-1 {
-            width: 700px;
-            height: 700px;
-            background: radial-gradient(circle, rgba(220, 20, 60, 0.15) 0%, transparent 70%);
-            top: -250px;
-            right: -250px;
-            animation-delay: 0s;
-        }
-
-        .orb-2 {
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(185, 28, 28, 0.12) 0%, transparent 70%);
-            bottom: 10%;
-            left: -200px;
-            animation-delay: 7s;
-        }
-
-        .orb-3 {
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(220, 20, 60, 0.08) 0%, transparent 70%);
-            top: 50%;
-            right: 10%;
-            animation-delay: 14s;
-        }
-
-        /* Premium Navbar */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 1.25rem 2rem;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(25px) saturate(180%);
-            border-bottom: 1px solid rgba(220, 20, 60, 0.1);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        [data-theme="light"] .navbar {
-            background: rgba(255, 255, 255, 0.9);
-            border-bottom: 1px solid rgba(220, 20, 60, 0.08);
-        }
-
-        .navbar.scrolled {
-            padding: 0.875rem 2rem;
-            box-shadow: var(--shadow-lg);
-            background: rgba(0, 0, 0, 0.95);
-        }
-
-        [data-theme="light"] .navbar.scrolled {
-            background: rgba(255, 255, 255, 0.95);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            text-decoration: none;
-            color: var(--text-primary);
-        }
-
-        .nav-logo-icon {
-            width: 45px;
-            height: 45px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-
-        .nav-logo-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .nav-logo:hover .nav-logo-icon {
-            transform: rotate(360deg);
-        }
-
-        .nav-logo-text {
-            font-weight: 700;
-            font-size: 1.35rem;
-            background: var(--gradient-red-glow);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -0.01em;
-        }
-
-        .nav-menu {
-            display: flex;
-            align-items: center;
-            gap: 3rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            padding: 0.5rem 0;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient-red-primary);
-            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border-radius: 2px;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .theme-toggle {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: 0.2s;
-            color: var(--text-primary);
-        }
-
-        .theme-toggle:hover {
-            background: var(--bg-card-hover);
-            border-color: var(--accent-primary);
-        }
-
-        .nav-cta {
-            padding: 0.65rem 1.5rem;
-            background: var(--gradient-1);
-            border: none;
-            border-radius: 8px;
-            color: white;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            text-decoration: none;
-            transition: 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .nav-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            color: var(--text-primary);
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 8rem 2rem 4rem;
-        }
-
-        .hero-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.6rem 1.25rem;
-            background: rgba(220, 20, 60, 0.08);
-            border: 1px solid rgba(220, 20, 60, 0.25);
-            border-radius: 50px;
-            font-size: 0.85rem;
-            color: var(--red-light);
-            margin-bottom: 1.5rem;
-            font-weight: 500;
-            backdrop-filter: blur(10px);
-        }
-
-        .hero-badge::before {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background: var(--red-primary);
-            border-radius: 50%;
-            animation: pulseRed 2s infinite;
-            box-shadow: 0 0 8px var(--red-primary);
-        }
-
-        @keyframes pulseRed {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.6; transform: scale(1.1); }
-        }
-
-        .hero-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.02em;
-        }
-
-        .hero-title span {
-            background: var(--gradient-red-glow);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
-        }
-
-        .hero-description {
-            font-size: 1.15rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            max-width: 540px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary {
-            padding: 1.1rem 2.25rem;
-            background: var(--gradient-red-primary);
-            border: none;
-            border-radius: 12px;
-            color: white;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            position: relative;
-            overflow: hidden;
-            box-shadow: var(--shadow-red);
-        }
-
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn-primary:hover::before {
-            left: 100%;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-red-lg), var(--glow-red);
-        }
-
-        .btn-secondary {
-            padding: 1.1rem 2.25rem;
-            background: transparent;
-            border: 2px solid var(--border-accent);
-            border-radius: 12px;
-            color: var(--text-primary);
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            position: relative;
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--red-primary);
-            background: rgba(220, 20, 60, 0.1);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-            color: var(--red-light);
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 3.5rem;
-            margin-top: 3.5rem;
-            padding-top: 2.5rem;
-            border-top: 1px solid var(--border-light);
-        }
-
-        .stat-item {
-            position: relative;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 800;
-            background: var(--gradient-red-glow);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1;
-            margin-bottom: 0.5rem;
-            filter: drop-shadow(0 0 15px rgba(220, 20, 60, 0.3));
-        }
-
-        .stat-label {
-            font-size: 0.875rem;
-            color: var(--text-muted);
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        /* Terminal */
-        .hero-terminal {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .terminal-header {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 1.25rem;
-            background: var(--bg-secondary);
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .terminal-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-
-        .terminal-dot.red { background: #ef4444; }
-        .terminal-dot.yellow { background: #f59e0b; }
-        .terminal-dot.green { background: #10b981; }
-
-        .terminal-title {
-            margin-left: auto;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .terminal-body {
-            padding: 1.5rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            min-height: 280px;
-        }
-
-        .terminal-line {
-            margin-bottom: 0.75rem;
-            opacity: 0;
-            animation: terminalType 0.5s ease forwards;
-        }
-
-        .terminal-line:nth-child(1) { animation-delay: 0.3s; }
-        .terminal-line:nth-child(2) { animation-delay: 0.6s; }
-        .terminal-line:nth-child(3) { animation-delay: 0.9s; }
-        .terminal-line:nth-child(4) { animation-delay: 1.2s; }
-        .terminal-line:nth-child(5) { animation-delay: 1.5s; }
-        .terminal-line:nth-child(6) { animation-delay: 1.8s; }
-        .terminal-line:nth-child(7) { animation-delay: 2.1s; }
-
-        .terminal-prompt { color: var(--accent-primary); }
-        .terminal-command { color: var(--text-primary); }
-        .terminal-output { color: var(--text-secondary); padding-left: 1rem; }
-        .terminal-success { color: #10b981; }
-
-        /* Sections */
-        section {
-            padding: 5rem 2rem;
-        }
-
-        .section-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-label {
-            display: inline-block;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--accent-primary);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 1rem;
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 4vw, 2.5rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* About Section */
-        .about {
-            background: var(--bg-secondary);
-            position: relative;
-        }
-
-        .about::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            margin-top: 3rem;
-        }
-
-        .about-text h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .about-text p {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-        }
-
-        .about-features {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-        }
-
-        .about-feature {
-            display: flex;
-            align-items: start;
-            gap: 1rem;
-            padding: 1.5rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            transition: 0.3s;
-        }
-
-        .about-feature:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-primary);
-            box-shadow: var(--shadow-md);
-        }
-
-        .about-feature-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 10px;
-            background: rgba(59, 130, 246, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent-primary);
-            flex-shrink: 0;
-        }
-
-        .about-feature-content h4 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .about-feature-content p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin: 0;
-        }
-
-        /* Services */
-        .services {
-            background: var(--bg-primary);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            padding: 2.5rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient-red-glow);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .service-card::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 24px;
-            padding: 1px;
-            background: var(--gradient-red-primary);
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            opacity: 0;
-            transition: opacity 0.4s;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--border-accent);
-            box-shadow: var(--shadow-xl), var(--shadow-red);
-        }
-
-        .service-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .service-card:hover::after {
-            opacity: 1;
-        }
-
-        .service-icon {
-            width: 70px;
-            height: 70px;
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, rgba(220, 20, 60, 0.1), rgba(185, 28, 28, 0.05));
-            border: 1px solid rgba(220, 20, 60, 0.2);
-            color: var(--red-light);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .service-card:hover .service-icon {
-            transform: scale(1.1) rotate(-5deg);
-            box-shadow: var(--glow-red);
-        }
-
-        .service-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-        }
-
-        .service-description {
-            color: var(--text-secondary);
-            margin-bottom: 1.25rem;
-            font-size: 0.95rem;
-        }
-
-        .service-features {
-            list-style: none;
-        }
-
-        .service-features li {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .service-features li i {
-            color: var(--accent-primary);
-            font-size: 0.75rem;
-        }
-
-        /* Portfolio Section */
-        .portfolio {
-            background: var(--bg-secondary);
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-        }
-
-        .portfolio-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: 0.3s;
-        }
-
-        .portfolio-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .portfolio-image {
-            width: 100%;
-            height: 250px;
-            background: var(--gradient-1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .portfolio-image::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.8), rgba(96, 165, 250, 0.8));
-        }
-
-        .portfolio-content {
-            padding: 2rem;
-        }
-
-        .portfolio-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-        }
-
-        .portfolio-description {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-        }
-
-        .portfolio-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .portfolio-tag {
-            padding: 0.25rem 0.75rem;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 20px;
-            font-size: 0.75rem;
-            color: var(--accent-primary);
-        }
-
-        .portfolio-result {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .portfolio-result i {
-            color: #10b981;
-        }
-
-        /* Tech Stack */
-        .tech {
-            background: var(--bg-primary);
-        }
-
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 1.25rem;
-        }
-
-        .tech-item {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 1.5rem 1rem;
-            text-align: center;
-            transition: 0.3s;
-        }
-
-        .tech-item:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-primary);
-            box-shadow: var(--shadow-md);
-        }
-
-        .tech-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 0.75rem;
-            height: 50px;
-        }
-
-        .tech-icon svg {
-            width: 40px;
-            height: 40px;
-        }
-
-        .tech-icon img {
-            max-width: 50px;
-            max-height: 50px;
-            width: auto;
-            height: auto;
-            object-fit: contain;
-        }
-
-        .tech-name {
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .tech-category {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            margin-top: 0.25rem;
-        }
-
-        /* Testimonials */
-        .testimonials {
-            background: var(--bg-secondary);
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .testimonial-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 2rem;
-            transition: 0.3s;
-        }
-
-        .testimonial-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-primary);
-            box-shadow: var(--shadow-md);
-        }
-
-        .testimonial-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .testimonial-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--gradient-1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-            font-size: 1.25rem;
-        }
-
-        .testimonial-info h4 {
-            font-size: 1rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .testimonial-info p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin: 0;
-        }
-
-        .testimonial-text {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.7;
-            margin-bottom: 1rem;
-        }
-
-        .testimonial-rating {
-            display: flex;
-            gap: 0.25rem;
-            color: #f59e0b;
-        }
-
-        /* Results */
-        .results {
-            background: var(--bg-primary);
-        }
-
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-        }
-
-        .result-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 2rem 1.5rem;
-            text-align: center;
-            transition: 0.3s;
-        }
-
-        .result-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-primary);
-        }
-
-        .result-number {
-            font-size: 3rem;
-            font-weight: 800;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1;
-            margin-bottom: 0.5rem;
-        }
-
-        .result-label {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: var(--bg-secondary);
-        }
-
-        .cta-container {
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 30px;
-            padding: 3.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--gradient-1);
-        }
-
-        .cta-title {
-            font-size: 2.25rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .cta-title span {
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .cta-description {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
-
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        /* Contact */
-        .contact {
-            background: var(--bg-primary);
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 3rem;
-        }
-
-        .contact-info h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .contact-info > p {
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
-
-        .contact-methods {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .contact-method {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1.25rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            text-decoration: none;
-            color: var(--text-primary);
-            transition: 0.2s;
-        }
-
-        .contact-method:hover {
-            border-color: var(--accent-primary);
-            transform: translateX(5px);
-        }
-
-        .contact-method-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            background: rgba(59, 130, 246, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent-primary);
-        }
-
-        .contact-method-text h4 {
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .contact-method-text p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin: 0;
-        }
-
-        /* Contact Form */
-        .contact-form-wrapper {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 2rem;
-        }
-
-        .contact-form {
-            display: grid;
-            gap: 1.25rem;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.25rem;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .form-group label {
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: var(--text-secondary);
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            padding: 1rem 1.25rem;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            color: var(--text-primary);
-            font-size: 1rem;
-            font-family: inherit;
-            transition: 0.2s;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--accent-primary);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
-        }
-
-        .form-group textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .form-submit {
-            padding: 1rem 2rem;
-            background: var(--gradient-1);
-            border: none;
-            border-radius: 10px;
-            color: white;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: 0.2s;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .form-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--bg-secondary);
-            padding: 3rem 2rem 1.5rem;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .footer-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .footer-main {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 2rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .footer-brand p {
-            color: var(--text-secondary);
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            max-width: 280px;
-        }
-
-        .footer-column h4 {
-            font-size: 0.95rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--accent-primary);
-        }
-
-        .footer-column ul {
-            list-style: none;
-        }
-
-        .footer-column ul li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-column ul a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: 0.2s;
-        }
-
-        .footer-column ul a:hover {
-            color: var(--accent-primary);
-        }
-
-        .footer-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 1.5rem;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 0.75rem;
-        }
-
-        .footer-social a {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: 0.2s;
-        }
-
-        .footer-social a:hover {
-            border-color: var(--accent-primary);
-            color: var(--accent-primary);
-            background: rgba(59, 130, 246, 0.1);
-        }
-
-        /* Back to Top */
-        .back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--gradient-1);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: 0.3s;
-            z-index: 999;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .back-to-top:hover {
-            transform: translateY(-5px);
-        }
-
-        /* WhatsApp Floating Button */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 5rem;
-            right: 2rem;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-            cursor: pointer;
-            z-index: 998;
-            transition: all 0.3s ease;
-            animation: pulse-whatsapp 2s infinite;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.1) translateY(-5px);
-            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
-        }
-
-        .whatsapp-float i {
-            color: white;
-        }
-
-        @keyframes pulse-whatsapp {
-            0%, 100% {
-                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-            }
-            50% {
-                box-shadow: 0 4px 30px rgba(37, 211, 102, 0.7);
-            }
-        }
-
-        /* Cookie Consent (LGPD) */
-        .cookie-consent {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: var(--bg-card);
-            border-top: 2px solid var(--accent-primary);
-            padding: 1.5rem 2rem;
-            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
-            z-index: 999;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-
-        .cookie-consent.show {
-            transform: translateY(0);
-        }
-
-        .cookie-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 2rem;
-        }
-
-        .cookie-text {
-            flex: 1;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
-        .cookie-text a {
-            color: var(--accent-primary);
-            text-decoration: underline;
-        }
-
-        .cookie-buttons {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .cookie-btn {
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            transition: 0.2s;
-        }
-
-        .cookie-accept {
-            background: var(--gradient-1);
-            color: white;
-        }
-
-        .cookie-accept:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
-        }
-
-        .cookie-decline {
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-primary);
-        }
-
-        /* Modal for Projects */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(10px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1001;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .modal.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal-content {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            max-width: 800px;
-            width: 90%;
-            max-height: 85vh;
-            overflow-y: auto;
-            padding: 3rem;
-            position: relative;
-            transform: scale(0.9) translateY(20px);
-            transition: transform 0.3s ease;
-        }
-
-        .modal.active .modal-content {
-            transform: scale(1) translateY(0);
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            color: #ef4444;
-            transition: 0.2s;
-        }
-
-        .modal-close:hover {
-            background: rgba(239, 68, 68, 0.2);
-            transform: rotate(90deg);
-        }
-
-        .modal-header h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .modal-body {
-            color: var(--text-secondary);
-            line-height: 1.8;
-        }
-
-        .modal-body h3 {
-            color: var(--text-primary);
-            margin-top: 1.5rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .modal-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin: 1.5rem 0;
-        }
-
-        .modal-tag {
-            padding: 0.5rem 1rem;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: var(--accent-primary);
-        }
-
-        /* Process Section */
-        .process {
-            background: var(--bg-primary);
-        }
-
-        .process-timeline {
-            position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .process-timeline::before {
-            content: '';
-            position: absolute;
-            left: 30px;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: linear-gradient(180deg, var(--accent-primary), transparent);
-        }
-
-        .process-step {
-            position: relative;
-            margin-bottom: 4rem;
-            padding-left: 100px;
-        }
-
-        .process-step:last-child {
-            margin-bottom: 0;
-        }
-
-        .process-number {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--gradient-1);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 1.5rem;
-            box-shadow: 0 4px 20px rgba(230, 57, 70, 0.3);
-            z-index: 2;
-        }
-
-        .process-content {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 2.5rem;
-            transition: 0.3s;
-            position: relative;
-        }
-
-        .process-content::before {
-            content: '';
-            position: absolute;
-            top: 30px;
-            left: -20px;
-            width: 20px;
-            height: 2px;
-            background: var(--border-color);
-        }
-
-        .process-content:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-primary);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .process-icon {
-            width: 70px;
-            height: 70px;
-            border-radius: 16px;
-            background: rgba(230, 57, 70, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent-primary);
-            margin-bottom: 1.5rem;
-        }
-
-        .process-content h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .process-content p {
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .process-deliverables {
-            list-style: none;
-            padding: 0;
-        }
-
-        .process-deliverables li {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin-bottom: 0.75rem;
-            padding: 0.75rem;
-            background: var(--bg-secondary);
-            border-radius: 8px;
-        }
-
-        .process-deliverables li i {
-            color: #10b981;
-            flex-shrink: 0;
-        }
-
-        /* FAQ Section */
-        .faq {
-            background: var(--bg-secondary);
-        }
-
-        .faq-list {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            margin-bottom: 1.25rem;
-            overflow: hidden;
-            transition: 0.3s;
-        }
-
-        .faq-item:hover {
-            border-color: var(--accent-primary);
-        }
-
-        .faq-question {
-            padding: 1.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            user-select: none;
-            transition: 0.3s;
-        }
-
-        .faq-question:hover {
-            background: var(--bg-card-hover);
-        }
-
-        .faq-question h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin: 0;
-        }
-
-        .faq-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
-            background: rgba(59, 130, 246, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent-primary);
-            transition: transform 0.3s ease;
-        }
-
-        .faq-item.active .faq-icon {
-            transform: rotate(180deg);
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease, padding 0.3s ease;
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 500px;
-            padding: 0 2rem 1.5rem 2rem;
-        }
-
-        .faq-answer p {
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin: 0;
-        }
-
-        /* Portfolio Filter */
-        .portfolio-filters {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            padding: 0.75rem 1.5rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            color: var(--text-secondary);
-            cursor: pointer;
-            font-weight: 500;
-            transition: 0.2s;
-        }
-
-        .filter-btn:hover {
-            border-color: var(--accent-primary);
-            color: var(--text-primary);
-        }
-
-        .filter-btn.active {
-            background: var(--gradient-1);
-            color: white;
-            border-color: transparent;
-        }
-
-        .portfolio-card.hidden {
-            display: none;
-        }
-
-        /* Advanced Animations */
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        @keyframes glow {
-            0%, 100% {
-                box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
-            }
-            50% {
-                box-shadow: 0 0 40px rgba(59, 130, 246, 0.6);
-            }
-        }
-
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-on-scroll {
-            opacity: 0;
-            animation: slideInUp 0.6s ease forwards;
-        }
-
-        /* Parallax Effect */
-        .parallax-orb {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(120px);
-            pointer-events: none;
-            z-index: -1;
-            opacity: 0.4;
-            transition: transform 0.1s ease-out;
-        }
-
-        .parallax-orb-1 {
-            width: 700px;
-            height: 700px;
-            background: radial-gradient(circle, rgba(230, 57, 70, 0.15) 0%, transparent 70%);
-            top: 10%;
-            right: -10%;
-        }
-
-        .parallax-orb-2 {
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(96, 165, 250, 0.12) 0%, transparent 70%);
-            bottom: 10%;
-            left: -10%;
-        }
-
-        /* Hover Card Effects */
-        .service-card,
-        .portfolio-card,
-        .tech-item {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::after,
-        .portfolio-card::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.1), transparent);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s ease, height 0.6s ease;
-        }
-
-        .service-card:hover::after,
-        .portfolio-card:hover::after {
-            width: 400px;
-            height: 400px;
-        }
-
-        /* Loading Skeleton */
-        .skeleton {
-            background: linear-gradient(90deg, var(--bg-card) 25%, var(--bg-card-hover) 50%, var(--bg-card) 75%);
-            background-size: 200% 100%;
-            animation: loading 1.5s infinite;
-        }
-
-        @keyframes loading {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-
-        /* Scroll Animation Classes */
-        .fade-in-up {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .fade-in-up.aos-animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .fade-in {
-            opacity: 0;
-            transition: opacity 0.6s ease-out;
-        }
-
-        .fade-in.aos-animate {
-            opacity: 1;
-        }
-
-        .scale-in {
-            opacity: 0;
-            transform: scale(0.9);
-            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-        }
-
-        .scale-in.aos-animate {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .slide-in-left {
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .slide-in-left.aos-animate {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .slide-in-right {
-            opacity: 0;
-            transform: translateX(50px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .slide-in-right.aos-animate {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        /* Animations */
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        @keyframes terminalType {
-            from {
-                opacity: 0;
-                transform: translateX(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-60px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(60px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes scaleIn {
-            from {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 1200px) {
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-            .tech-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            .results-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .footer-main {
-                grid-template-columns: 1fr 1fr;
-            }
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 992px) {
-            .hero-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            .hero-description {
-                margin: 0 auto 2rem;
-            }
-            .hero-buttons {
-                justify-content: center;
-            }
-            .hero-stats {
-                justify-content: center;
-            }
-            .hero-visual {
-                order: -1;
-                max-width: 500px;
-                margin: 0 auto;
-            }
-            .nav-links,
-            .nav-cta {
-                display: none;
-            }
-            .mobile-menu-btn {
-                display: flex;
-            }
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero {
-                padding: 6rem 1.5rem 3rem;
-            }
-            .hero-title {
-                font-size: 2rem;
-            }
-            .hero-stats {
-                flex-direction: column;
-                gap: 1.5rem;
-            }
-            section {
-                padding: 3rem 1.5rem;
-            }
-            .tech-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .results-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .footer-main {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            .footer-bottom {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            .cta-container {
-                padding: 2rem 1.5rem;
-            }
-            .cta-title {
-                font-size: 1.5rem;
-            }
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-            .about-features {
-                grid-template-columns: 1fr;
-            }
-            .cookie-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            .cookie-buttons {
-                width: 100%;
-                justify-content: center;
-            }
-            .whatsapp-float {
-                width: 50px;
-                height: 50px;
-                bottom: 4rem;
-                right: 1rem;
-            }
-            .process-timeline::before {
-                left: 20px;
-            }
-            .process-step {
-                padding-left: 70px;
-            }
-            .process-number {
-                width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
-            }
-            .process-content {
-                padding: 1.5rem;
-            }
-        }
-    </style>
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
     <div class="bg-grid"></div>
@@ -2236,6 +85,9 @@
                     <i data-lucide="shield-check" style="width: 14px; height: 14px;"></i>
                     <span>Parceiro Estratégico em Tecnologia</span>
                 </div>
+                <div class="hero-logo">
+                    <img src="logos/Morgado Consultoria logo.png" alt="Morgado Consultoria" loading="eager">
+                </div>
                 <h1 class="hero-title">Excelência em <span>Infraestrutura de Dados</span> e <span>Soluções Digitais</span></h1>
                 <p class="hero-description">Consultoria técnica especializada para empresas que não podem falhar. Oferecemos arquitetura de dados enterprise, desenvolvimento de soluções críticas e suporte técnico de elite com SLA garantido.</p>
                 <div class="hero-buttons">
@@ -2272,16 +124,16 @@
                         <span class="terminal-title">morgado@consultoria:~</span>
                     </div>
                     <div class="terminal-body">
-                        <div class="terminal-line"><span class="terminal-prompt">morgado@enterprise:~$</span><span class="terminal-command"> systemctl status infra-monitoring</span></div>
-                        <div class="terminal-line terminal-output">● Infrastructure Monitoring Suite</div>
-                        <div class="terminal-line terminal-output">   Loaded: <span class="terminal-success">active (running)</span> since Mon 2025-01-13</div>
-                        <div class="terminal-line terminal-output">   Active: <span class="terminal-success">active</span> for 1y 2mo 15d</div>
-                        <div class="terminal-line"><span class="terminal-prompt">morgado@enterprise:~$</span><span class="terminal-command"> check-sla --summary</span></div>
-                        <div class="terminal-line terminal-output">SLA Compliance Report:</div>
-                        <div class="terminal-line terminal-output">  Database Uptime:     <span class="terminal-success">99.97%</span> ✓</div>
-                        <div class="terminal-line terminal-output">  Response Time:       <span class="terminal-success">&lt;50ms avg</span> ✓</div>
-                        <div class="terminal-line terminal-output">  Incidents (P1):      <span class="terminal-success">0 this month</span> ✓</div>
-                        <div class="terminal-line"><span class="terminal-prompt">morgado@enterprise:~$</span><span class="terminal-command"> █</span></div>
+                        <div class="terminal-line"><span class="terminal-prompt">morgado@db-prod:~$</span><span class="terminal-command"> check-cluster-status --all</span></div>
+                        <div class="terminal-line terminal-output">● AlwaysOn Availability Group - PRIMARY</div>
+                        <div class="terminal-line terminal-output">  Uptime: <span class="terminal-success">99.98%</span> | Sync State: <span class="terminal-success">SYNCHRONIZED</span></div>
+                        <div class="terminal-line terminal-output">  Last Failover: <span class="terminal-success">0 incidents (auto-recovery enabled)</span></div>
+                        <div class="terminal-line"><span class="terminal-prompt">morgado@db-prod:~$</span><span class="terminal-command"> query-performance --summary</span></div>
+                        <div class="terminal-line terminal-output">Query Performance Analysis:</div>
+                        <div class="terminal-line terminal-output">  Avg Query Time:   <span class="terminal-success">&lt;45ms</span> ✓</div>
+                        <div class="terminal-line terminal-output">  Slow Queries:     <span class="terminal-success">0 detected</span> ✓</div>
+                        <div class="terminal-line terminal-output">  Index Health:     <span class="terminal-success">100% optimized</span> ✓</div>
+                        <div class="terminal-line"><span class="terminal-prompt">morgado@db-prod:~$</span><span class="terminal-command"> █</span></div>
                     </div>
                 </div>
             </div>
@@ -2299,13 +151,7 @@
             <div class="about-content">
                 <div class="about-text">
                     <h3>Excelência Técnica, Resultados Mensuráveis</h3>
-                    <p>A <strong>Morgado Consultoria</strong> é referência em soluções de infraestrutura de dados e desenvolvimento de sistemas críticos para o mercado corporativo. Com mais de 5 anos de experiência e dezenas de implementações bem-sucedidas, somos o parceiro estratégico de empresas que exigem o mais alto nível de confiabilidade e performance.</p>
-
-                    <p><strong>Nossa Missão:</strong> Garantir a continuidade operacional e excelência tecnológica dos negócios de nossos clientes através de soluções robustas, escaláveis e perfeitamente alinhadas aos objetivos estratégicos da organização.</p>
-
-                    <p><strong>Nossa Visão:</strong> Ser reconhecida como a consultoria técnica de referência no Brasil para projetos de missão crítica, conhecida pela qualidade inquestionável de entrega e pelo comprometimento com o sucesso de longo prazo de nossos clientes.</p>
-
-                    <p><strong>Nossos Valores:</strong> Integridade técnica, comprometimento com resultados, transparência total, melhoria contínua e parceria estratégica de longo prazo.</p>
+                    <p>A <strong>Morgado Consultoria</strong> é especializada em infraestrutura de banco de dados e desenvolvimento de sistemas críticos para o mercado corporativo. Com 5+ anos de experiência em alta disponibilidade e disaster recovery, somos o parceiro estratégico de empresas que exigem máxima confiabilidade, zero downtime e performance garantida.</p>
                 </div>
                 <div class="about-features">
                     <div class="about-feature">
@@ -2323,7 +169,7 @@
                         </div>
                         <div class="about-feature-content">
                             <h4>Performance Crítica</h4>
-                            <p>Otimização contínua com monitoramento proativo, análise preditiva e tunning preventivo de performance</p>
+                            <p>Otimização contínua com monitoramento proativo, análise preditiva e tuning preventivo de performance</p>
                         </div>
                     </div>
                     <div class="about-feature">
@@ -2349,6 +195,60 @@
         </div>
     </section>
 
+    <!-- Expertise Section -->
+    <section class="expertise" id="expertise">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-label">// Expertise Técnica</span>
+                <h2 class="section-title">Gabriel Morgado - DBA Enterprise & HA/DR Specialist</h2>
+                <p class="section-subtitle">5+ anos de experiência em Alta Disponibilidade, Disaster Recovery e Performance Tuning</p>
+            </div>
+            <div class="expertise-content">
+                <div class="expertise-bio">
+                    <h3>Sobre o Consultor</h3>
+                    <p>Sou um <strong>DBA Enterprise</strong> com mais de 5 anos de experiência, especializado em <strong>Alta Disponibilidade (HA)</strong> e <strong>Disaster Recovery (DR)</strong>. Atuo como consultor independente, prestando serviços para empresas que exigem máxima confiabilidade, segurança e zero downtime em ambientes de bancos de dados críticos.</p>
+                    <p>Minha especialização abrange <strong>arquiteturas resilientes</strong> em SQL Server (AlwaysOn Availability Groups, Failover Cluster Instance), Oracle (Data Guard, RAC) e MariaDB/MySQL (Galera Cluster, Replicação), além de implementação de estratégias robustas de backup, otimização de performance em ambientes críticos e planejamento de continuidade de negócios (BCP) com definição rigorosa de RTO/RPO.</p>
+                    <p>Minha abordagem é sempre focada em garantir que os dados estejam <strong>seguros, acessíveis e com alto desempenho 24/7</strong>. Acredito que um bom DBA é aquele que <strong>antecipa problemas e implementa soluções preventivas</strong>, evitando crises — e não apenas reagindo a elas. Trabalho com monitoramento proativo (Zabbix, Grafana), automação inteligente (Python, PowerShell, Shell Script) e cloud providers (Azure, AWS, Google Cloud).</p>
+                </div>
+                <div class="expertise-credentials">
+                    <div class="credential-category">
+                        <h4><i data-lucide="shield-check" style="width: 20px; height: 20px;"></i> Alta Disponibilidade & Disaster Recovery</h4>
+                        <ul class="credential-list">
+                            <li><strong>SQL Server:</strong> AlwaysOn Availability Groups (AG), Failover Cluster Instance (FCI), Configuração e Monitoramento</li>
+                            <li><strong>Oracle:</strong> Data Guard (Standby Primário, Físico e Lógico), Real Application Clusters (RAC)</li>
+                            <li><strong>MariaDB/MySQL:</strong> Galera Cluster com Replicação Síncrona e Failover Automático</li>
+                            <li><strong>PostgreSQL:</strong> Patroni/Pgpool-II para HA e Load Balancing</li>
+                            <li>Planejamento de Continuidade de Negócios (BCP) com RTO/RPO definidos</li>
+                            <li>Testes regulares de Failover e Recuperação de Desastres</li>
+                        </ul>
+                    </div>
+                    <div class="credential-category">
+                        <h4><i data-lucide="zap" style="width: 20px; height: 20px;"></i> Performance Tuning & Otimização</h4>
+                        <ul class="credential-list">
+                            <li>Query Tuning com análise de Execution Plans (EXPLAIN, SHOWPLAN)</li>
+                            <li>Index Strategy: criação, manutenção, análise de fragmentação e missing indexes</li>
+                            <li>Análise de Gargalos: wait stats, DMVs, Extended Events, Traces</li>
+                            <li>Configuração otimizada de Parâmetros de Banco para ambientes críticos</li>
+                            <li>Otimização de Consultas Complexas com refactoring de queries</li>
+                            <li>Gestão de Capacidade e Planejamento de Crescimento</li>
+                        </ul>
+                    </div>
+                    <div class="credential-category">
+                        <h4><i data-lucide="activity" style="width: 20px; height: 20px;"></i> Monitoramento 24/7 & Automação</h4>
+                        <ul class="credential-list">
+                            <li><strong>Zabbix + Grafana:</strong> Monitoramento proativo de saúde de bancos de dados</li>
+                            <li>SQL Server Agent Jobs: agendamento de tarefas críticas e alertas inteligentes</li>
+                            <li>Automação com Python, PowerShell e Shell Script para operações recorrentes</li>
+                            <li>Soluções de Backup Automatizado com validação e notificação</li>
+                            <li>Alertas Proativos via e-mail, SMS e integração com PagerDuty</li>
+                            <li>Logs estruturados e Auditoria completa de operações sensíveis</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Services Section -->
     <section class="services" id="services">
         <div class="section-container">
@@ -2365,39 +265,33 @@
                     <h3 class="service-title">Arquitetura e Consultoria em Banco de Dados</h3>
                     <p class="service-description">Especialização em ambientes de missão crítica com SQL Server, Oracle, MySQL/MariaDB e PostgreSQL. Oferecemos disponibilidade enterprise com SLA de 99.9% e suporte técnico especializado 24/7/365.</p>
                     <ul class="service-features">
-                        <li><i data-lucide="check-circle" style="width: 12px; height: 12px;"></i> AlwaysOn AG / Data Guard / Cluster para Alta Disponibilidade</li>
-                        <li><i data-lucide="check-circle" style="width: 12px; height: 12px;"></i> Disaster Recovery com RTO &lt; 15min e RPO &lt; 5min</li>
-                        <li><i data-lucide="check-circle" style="width: 12px; height: 12px;"></i> Performance Tuning e Query Optimization Avançada</li>
-                        <li><i data-lucide="check-circle" style="width: 12px; height: 12px;"></i> Migração Zero-Downtime entre Plataformas</li>
-                        <li><i data-lucide="check-circle" style="width: 12px; height: 12px;"></i> Database DevOps e Automação de Deploys</li>
+                        <li><i data-lucide="check-circle" style="width: 12px; height: 12px;"></i> Alta Disponibilidade (AlwaysOn AG, RAC, Galera) e Disaster Recovery (RTO <15min)</li>
+                        <li><i data-lucide="check-circle" style="width: 12px; height: 12px;"></i> Performance Tuning Avançado e Migração Zero-Downtime</li>
+                        <li><i data-lucide="check-circle" style="width: 12px; height: 12px;"></i> Monitoramento 24/7 e SLA 99.9% Garantido</li>
                     </ul>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
                         <i data-lucide="globe" style="width: 28px; height: 28px;"></i>
                     </div>
-                    <h3 class="service-title">Desenvolvimento Web e Aplicações Corporativas</h3>
-                    <p class="service-description">Desenvolvimento de soluções web modernas, performáticas e escaláveis utilizando tecnologias de ponta (React, Node.js, Python). Arquitetura orientada a microsserviços, CI/CD e cloud-native.</p>
+                    <h3 class="service-title">Arquitetura Web Enterprise e Cloud-Native</h3>
+                    <p class="service-description">Soluções web enterprise com arquitetura Clean Architecture + DDD (Domain-Driven Design), stack moderno TypeScript (React/Next.js frontend, Node.js/NestJS backend, Python/FastAPI para ML), deployment em Kubernetes com GitOps, observability completa (Prometheus/Grafana/Jaeger), e performance garantida: P95 latency <100ms, availability 99.99%, auto-scaling horizontal.</p>
                     <ul class="service-features">
-                        <li><i data-lucide="check-circle" style="width: 12px; height: 12px;"></i> Portais Corporativos de Alta Performance</li>
-                        <li><i data-lucide="check-circle" style="width: 12px; height: 12px;"></i> Plataformas E-commerce Enterprise com PCI-DSS</li>
-                        <li><i data-lucide="check-circle" style="width: 12px; height: 12px;"></i> Progressive Web Apps (PWA) e Mobile-First</li>
-                        <li><i data-lucide="check-circle" style="width: 12px; height: 12px;"></i> SEO Técnico, Core Web Vitals e Acessibilidade (WCAG)</li>
-                        <li><i data-lucide="check-circle" style="width: 12px; height: 12px;"></i> Integrações via API RESTful e GraphQL</li>
+                        <li><i data-lucide="check-circle" style="width: 12px; height: 12px;"></i> Microservices (Event-Driven, CQRS) e APIs RESTful/GraphQL</li>
+                        <li><i data-lucide="check-circle" style="width: 12px; height: 12px;"></i> Infrastructure-as-Code, CI/CD e Deploy em Kubernetes</li>
+                        <li><i data-lucide="check-circle" style="width: 12px; height: 12px;"></i> Performance <100ms (P95) e Security by Design (OWASP Top 10)</li>
                     </ul>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
                         <i data-lucide="settings" style="width: 28px; height: 28px;"></i>
                     </div>
-                    <h3 class="service-title">Sistemas Enterprise e Automação</h3>
-                    <p class="service-description">Desenvolvimento de sistemas de gestão personalizados, automação de processos críticos (RPA) e plataformas de Business Intelligence. Soluções escaláveis alinhadas aos objetivos estratégicos da organização.</p>
+                    <h3 class="service-title">Plataformas SaaS e Sistemas Customizados Escaláveis</h3>
+                    <p class="service-description">Desenvolvimento de plataformas SaaS multi-tenant com usage-based billing, sistemas enterprise customizados com arquitetura event-driven, automação inteligente (RPA + AI), e data platforms com streaming analytics. Especialização em legacy modernization: refactoring de monolitos para microserviços cloud-native sem downtime, com ROI médio de 8-12 meses.</p>
                     <ul class="service-features">
-                        <li><i data-lucide="check-circle" style="width: 12px; height: 12px;"></i> ERP e CRM Enterprise com Arquitetura SOA</li>
-                        <li><i data-lucide="check-circle" style="width: 12px; height: 12px;"></i> RPA (Robotic Process Automation) com UiPath/Power Automate</li>
-                        <li><i data-lucide="check-circle" style="width: 12px; height: 12px;"></i> Integrações B2B (EDI, APIs, Webhooks, Message Brokers)</li>
-                        <li><i data-lucide="check-circle" style="width: 12px; height: 12px;"></i> Data Warehouse, ETL e Plataformas de BI (Power BI, Tableau)</li>
-                        <li><i data-lucide="check-circle" style="width: 12px; height: 12px;"></i> Workflows e BPM (Business Process Management)</li>
+                        <li><i data-lucide="check-circle" style="width: 12px; height: 12px;"></i> SaaS Multi-Tenant com Usage-Based Billing e API Monetization</li>
+                        <li><i data-lucide="check-circle" style="width: 12px; height: 12px;"></i> ERP/CRM Customizado e Legacy Modernization (ROI 8-12 meses)</li>
+                        <li><i data-lucide="check-circle" style="width: 12px; height: 12px;"></i> Compliance (SOC2, GDPR, LGPD) e Real-Time Data Platforms</li>
                     </ul>
                 </div>
             </div>
@@ -2421,7 +315,10 @@
             <div class="portfolio-grid">
                 <div class="portfolio-card" data-category="database" onclick="openModal('database1')">
                     <div class="portfolio-image">
-                        <i data-lucide="database" style="width: 80px; height: 80px; position: relative; z-index: 1;"></i>
+                        <img src="projects/Arquitetura de Alta Disponibilidade.jpg" alt="Arquitetura de Alta Disponibilidade">
+                        <div class="portfolio-overlay">
+                            <i data-lucide="eye" class="view-icon"></i>
+                        </div>
                     </div>
                     <div class="portfolio-content">
                         <h3 class="portfolio-title">Arquitetura de Alta Disponibilidade</h3>
@@ -2439,7 +336,10 @@
                 </div>
                 <div class="portfolio-card" data-category="database" onclick="openModal('database2')">
                     <div class="portfolio-image">
-                        <i data-lucide="shield" style="width: 80px; height: 80px; position: relative; z-index: 1;"></i>
+                        <img src="projects/Plano de Disaster Recovery.png" alt="Plano de Disaster Recovery">
+                        <div class="portfolio-overlay">
+                            <i data-lucide="eye" class="view-icon"></i>
+                        </div>
                     </div>
                     <div class="portfolio-content">
                         <h3 class="portfolio-title">Plano de Disaster Recovery</h3>
@@ -2451,13 +351,16 @@
                         </div>
                         <div class="portfolio-result">
                             <i data-lucide="trending-up" style="width: 16px; height: 16px;"></i>
-                            <span>RTO de 15 minutos implementado</span>
+                            <span>RTO &lt;15min implementado</span>
                         </div>
                     </div>
                 </div>
                 <div class="portfolio-card" data-category="web" onclick="openModal('web1')">
                     <div class="portfolio-image">
-                        <i data-lucide="globe" style="width: 80px; height: 80px; position: relative; z-index: 1;"></i>
+                        <img src="projects/Website Institucional Responsivo.jpg" alt="Website Institucional Responsivo">
+                        <div class="portfolio-overlay">
+                            <i data-lucide="eye" class="view-icon"></i>
+                        </div>
                     </div>
                     <div class="portfolio-content">
                         <h3 class="portfolio-title">Website Institucional Responsivo</h3>
@@ -2475,7 +378,10 @@
                 </div>
                 <div class="portfolio-card" data-category="system" onclick="openModal('system1')">
                     <div class="portfolio-image">
-                        <i data-lucide="bar-chart" style="width: 80px; height: 80px; position: relative; z-index: 1;"></i>
+                        <img src="projects/Dashboards Estratégicos com BI.webp" alt="Dashboards Estratégicos com BI">
+                        <div class="portfolio-overlay">
+                            <i data-lucide="eye" class="view-icon"></i>
+                        </div>
                     </div>
                     <div class="portfolio-content">
                         <h3 class="portfolio-title">Dashboards Estratégicos com BI</h3>
@@ -2506,35 +412,35 @@
                 <!-- Databases -->
                 <div class="tech-item">
                     <div class="tech-icon">
-                        <img src="logos/nD4T3xM9y07Z.png" alt="SQL Server">
+                        <img src="logos/sqlserver.svg" alt="SQL Server">
                     </div>
                     <div class="tech-name">SQL Server</div>
                     <div class="tech-category">Database</div>
                 </div>
                 <div class="tech-item">
                     <div class="tech-icon">
-                        <img src="logos/OutZSPPHdR6E.png" alt="Oracle">
+                        <img src="logos/oracle.png" alt="Oracle">
                     </div>
                     <div class="tech-name">Oracle</div>
                     <div class="tech-category">Database</div>
                 </div>
                 <div class="tech-item">
                     <div class="tech-icon">
-                        <img src="logos/dRntw6UFBcE0.png" alt="MySQL">
+                        <img src="logos/mysql.png" alt="MySQL">
                     </div>
                     <div class="tech-name">MySQL</div>
                     <div class="tech-category">Database</div>
                 </div>
                 <div class="tech-item">
                     <div class="tech-icon">
-                        <img src="logos/1OW84PyanvxN.png" alt="MariaDB">
+                        <img src="logos/mariadb.png" alt="MariaDB">
                     </div>
                     <div class="tech-name">MariaDB</div>
                     <div class="tech-category">Database</div>
                 </div>
                 <div class="tech-item">
                     <div class="tech-icon">
-                        <img src="logos/Ui5PNmofpY9w.png" alt="PostgreSQL">
+                        <img src="logos/postgresql.webp" alt="PostgreSQL">
                     </div>
                     <div class="tech-name">PostgreSQL</div>
                     <div class="tech-category">Database</div>
@@ -2549,7 +455,7 @@
                 <!-- Cloud -->
                 <div class="tech-item">
                     <div class="tech-icon">
-                        <img src="logos/dKqi7Y1r8NWT.png" alt="AWS RDS">
+                        <img src="logos/aws.webp" alt="AWS">
                     </div>
                     <div class="tech-name">AWS RDS</div>
                     <div class="tech-category">Cloud</div>
@@ -2564,43 +470,36 @@
                 <!-- Frontend/Backend -->
                 <div class="tech-item">
                     <div class="tech-icon">
-                        <img src="logos/LGpReXrw2fh5.png" alt="React">
+                        <img src="logos/react.webp" alt="React">
                     </div>
                     <div class="tech-name">React</div>
                     <div class="tech-category">Frontend</div>
                 </div>
                 <div class="tech-item">
                     <div class="tech-icon">
-                        <img src="logos/fuIM8YshbxIh.png" alt="Node.js">
+                        <img src="logos/nodejs.png" alt="Node.js">
                     </div>
                     <div class="tech-name">Node.js</div>
                     <div class="tech-category">Backend</div>
                 </div>
                 <div class="tech-item">
                     <div class="tech-icon">
-                        <img src="logos/ccV2brkANvSu.png" alt="Python">
+                        <img src="logos/python.png" alt="Python">
                     </div>
                     <div class="tech-name">Python</div>
                     <div class="tech-category">Backend</div>
                 </div>
-                <div class="tech-item">
-                    <div class="tech-icon">
-                        <img src="logos/PowerShell.png" alt="PowerShell">
-                    </div>
-                    <div class="tech-name">PowerShell</div>
-                    <div class="tech-category">Automation</div>
-                </div>
                 <!-- DevOps & Infrastructure -->
                 <div class="tech-item">
                     <div class="tech-icon">
-                        <img src="logos/sH1Zubda3Mzv.png" alt="Docker">
+                        <img src="logos/docker.png" alt="Docker">
                     </div>
                     <div class="tech-name">Docker</div>
                     <div class="tech-category">DevOps</div>
                 </div>
                 <div class="tech-item">
                     <div class="tech-icon">
-                        <img src="logos/Zabbix.jpg" alt="Zabbix">
+                        <img src="logos/Zabbix-logo.png" alt="Zabbix">
                     </div>
                     <div class="tech-name">Zabbix</div>
                     <div class="tech-category">Monitoring</div>
@@ -2618,13 +517,6 @@
                     </div>
                     <div class="tech-name">Linux</div>
                     <div class="tech-category">Infrastructure</div>
-                </div>
-                <div class="tech-item">
-                    <div class="tech-icon">
-                        <img src="logos/egTS7jWqcTa5.png" alt="Git">
-                    </div>
-                    <div class="tech-name">Git</div>
-                    <div class="tech-category">Version Control</div>
                 </div>
             </div>
         </div>
@@ -2727,83 +619,180 @@
         <div class="section-container">
             <div class="section-header">
                 <span class="section-label">// Metodologia</span>
-                <h2 class="section-title">Processo Estruturado de Entrega</h2>
-                <p class="section-subtitle">Metodologia comprovada que garante resultados previsíveis e qualidade superior em cada etapa.</p>
+                <h2 class="section-title">Processos Estruturados de Entrega</h2>
+                <p class="section-subtitle">Metodologias especializadas para cada tipo de projeto, garantindo resultados previsíveis e qualidade superior.</p>
             </div>
-            <div class="process-timeline">
-                <div class="process-step">
-                    <div class="process-number">01</div>
-                    <div class="process-content">
-                        <div class="process-icon">
-                            <i data-lucide="search" style="width: 28px; height: 28px;"></i>
+
+            <!-- Abas de Seleção -->
+            <div class="process-tabs">
+                <button class="process-tab active" data-process="database">
+                    <i data-lucide="database" style="width: 20px; height: 20px;"></i>
+                    Projetos de Banco de Dados
+                </button>
+                <button class="process-tab" data-process="development">
+                    <i data-lucide="code" style="width: 20px; height: 20px;"></i>
+                    Desenvolvimento de Sistemas
+                </button>
+            </div>
+
+            <!-- Processo: Banco de Dados -->
+            <div class="process-content-wrapper active" id="process-database">
+                <div class="process-timeline">
+                    <div class="process-step">
+                        <div class="process-number">01</div>
+                        <div class="process-content">
+                            <div class="process-icon">
+                                <i data-lucide="search" style="width: 28px; height: 28px;"></i>
+                            </div>
+                            <h3>Assessment e Diagnóstico</h3>
+                            <p>Auditoria completa de performance e infraestrutura com identificação de gargalos, análise de queries lentas e avaliação de riscos de segurança.</p>
+                            <ul class="process-deliverables">
+                                <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Relatório de Health Check Completo</li>
+                                <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Análise de Performance e Gargalos</li>
+                                <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Plano de Ação Priorizado</li>
+                            </ul>
                         </div>
-                        <h3>Diagnóstico e Análise</h3>
-                        <p>Assessment completo da infraestrutura atual, identificação de gaps críticos, análise de riscos e mapeamento de requisitos técnicos e de negócio. Entregamos um relatório executivo com recomendações priorizadas.</p>
-                        <ul class="process-deliverables">
-                            <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Relatório de Assessment Técnico</li>
-                            <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Matriz de Riscos e Mitigação</li>
-                            <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Roadmap de Implementação</li>
-                        </ul>
+                    </div>
+                    <div class="process-step">
+                        <div class="process-number">02</div>
+                        <div class="process-content">
+                            <div class="process-icon">
+                                <i data-lucide="layout" style="width: 28px; height: 28px;"></i>
+                            </div>
+                            <h3>Modelagem e Arquitetura</h3>
+                            <p>Design de modelo normalizado com arquitetura de alta disponibilidade (AlwaysOn, RAC, Galera) e estratégia de disaster recovery com RTO/RPO definidos.</p>
+                            <ul class="process-deliverables">
+                                <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Modelo Entidade-Relacionamento (ER)</li>
+                                <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Documento de Arquitetura de Dados</li>
+                                <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Plano de DR e Backup</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="process-number">03</div>
+                        <div class="process-content">
+                            <div class="process-icon">
+                                <i data-lucide="database" style="width: 28px; height: 28px;"></i>
+                            </div>
+                            <h3>Implementação de Database</h3>
+                            <p>Desenvolvimento de schemas, procedures e triggers otimizados com análise de execution plans, configuração de segurança granular e tuning preventivo.</p>
+                            <ul class="process-deliverables">
+                                <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Scripts DDL/DML Versionados (Git)</li>
+                                <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Stored Procedures com Execution Plans Otimizados</li>
+                                <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Relatórios de Baseline Performance</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="process-number">04</div>
+                        <div class="process-content">
+                            <div class="process-icon">
+                                <i data-lucide="arrow-right-left" style="width: 28px; height: 28px;"></i>
+                            </div>
+                            <h3>Migração e Go-Live</h3>
+                            <p>Execução de migração com rollback testado, validação de integridade de dados e monitoramento intensivo pós-migração.</p>
+                            <ul class="process-deliverables">
+                                <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Plano de Migração e Rollback</li>
+                                <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Scripts de Migração Validados</li>
+                                <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Relatório de Validação de Dados</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="process-number">05</div>
+                        <div class="process-content">
+                            <div class="process-icon">
+                                <i data-lucide="activity" style="width: 28px; height: 28px;"></i>
+                            </div>
+                            <h3>Monitoramento e Tuning Contínuo</h3>
+                            <p>Monitoramento 24/7 com ferramentas especializadas, análise proativa de queries lentas, tuning preventivo de índices e otimização contínua de performance.</p>
+                            <ul class="process-deliverables">
+                                <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> SLA 99.9% com Penalidades Contratuais</li>
+                                <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Relatórios de Performance (AWR/Statspack/PMM)</li>
+                                <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Análise de Wait Events e Query Tuning</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                <div class="process-step">
-                    <div class="process-number">02</div>
-                    <div class="process-content">
-                        <div class="process-icon">
-                            <i data-lucide="file-text" style="width: 28px; height: 28px;"></i>
+            </div>
+
+            <!-- Processo: Desenvolvimento de Sistemas -->
+            <div class="process-content-wrapper" id="process-development">
+                <div class="process-timeline">
+                    <div class="process-step">
+                        <div class="process-number">01</div>
+                        <div class="process-content">
+                            <div class="process-icon">
+                                <i data-lucide="clipboard-list" style="width: 28px; height: 28px;"></i>
+                            </div>
+                            <h3>Levantamento de Requisitos e Domain Analysis</h3>
+                            <p>Domain-Driven Design Workshop com Event Storming, C4 Architecture diagrams e análise de requisitos não-funcionais (performance, security, scalability).</p>
+                            <ul class="process-deliverables">
+                                <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Event Storming Output e Domain Model</li>
+                                <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> C4 Architecture Diagrams (4 níveis)</li>
+                                <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> NFRs Documentados (Performance, Security, Scalability)</li>
+                            </ul>
                         </div>
-                        <h3>Planejamento e Arquitetura</h3>
-                        <p>Design de solução detalhado, definição de arquitetura técnica, plano de projeto com cronograma realista, estimativas de esforço e identificação de dependências críticas. Revisão e aprovação com stakeholders.</p>
-                        <ul class="process-deliverables">
-                            <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Documento de Arquitetura (SAD)</li>
-                            <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Plano de Projeto Detalhado</li>
-                            <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Plano de Comunicação e Riscos</li>
-                        </ul>
                     </div>
-                </div>
-                <div class="process-step">
-                    <div class="process-number">03</div>
-                    <div class="process-content">
-                        <div class="process-icon">
-                            <i data-lucide="code" style="width: 28px; height: 28px;"></i>
+                    <div class="process-step">
+                        <div class="process-number">02</div>
+                        <div class="process-content">
+                            <div class="process-icon">
+                                <i data-lucide="boxes" style="width: 28px; height: 28px;"></i>
+                            </div>
+                            <h3>Arquitetura Enterprise e Technology Stack</h3>
+                            <p>Definição de arquitetura escalável (Event-Driven, CQRS, microservices), Infrastructure-as-Code com Terraform, deployment em Kubernetes e design de APIs RESTful/GraphQL.</p>
+                            <ul class="process-deliverables">
+                                <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Architecture Decision Records (ADRs)</li>
+                                <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Kubernetes Manifests e Terraform Modules</li>
+                                <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> OpenAPI 3.0 Spec com Schemas Validados</li>
+                            </ul>
                         </div>
-                        <h3>Implementação Controlada</h3>
-                        <p>Execução em sprints com entregas incrementais, testes rigorosos em ambiente homologado, documentação técnica e operacional completa, e validações contínuas com equipe do cliente. Zero surpresas no go-live.</p>
-                        <ul class="process-deliverables">
-                            <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Entregas Incrementais Validadas</li>
-                            <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Documentação Técnica e Operacional</li>
-                            <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Relatórios de Teste e Qualidade</li>
-                        </ul>
                     </div>
-                </div>
-                <div class="process-step">
-                    <div class="process-number">04</div>
-                    <div class="process-content">
-                        <div class="process-icon">
-                            <i data-lucide="rocket" style="width: 28px; height: 28px;"></i>
+                    <div class="process-step">
+                        <div class="process-number">03</div>
+                        <div class="process-content">
+                            <div class="process-icon">
+                                <i data-lucide="code-2" style="width: 28px; height: 28px;"></i>
+                            </div>
+                            <h3>Desenvolvimento com Quality Engineering</h3>
+                            <p>TDD/BDD com code coverage >85%, performance testing (P95 <100ms), security scanning (SAST/DAST), observability instrumentation e CI/CD pipeline completo.</p>
+                            <ul class="process-deliverables">
+                                <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Pipeline CI/CD com Quality Gates Aprovados</li>
+                                <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Performance Baseline Report (P95/P99 latency)</li>
+                                <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Security Scan Report (SAST/DAST Zero Critical)</li>
+                            </ul>
                         </div>
-                        <h3>Deploy e Go-Live</h3>
-                        <p>Plano de rollout detalhado com estratégia de rollback, execução assistida com time estendido, validações pós-deploy, treinamento operacional e suporte intensivo durante período de estabilização.</p>
-                        <ul class="process-deliverables">
-                            <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Plano de Deploy e Rollback</li>
-                            <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Runbooks Operacionais</li>
-                            <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Suporte de Hypercare (30 dias)</li>
-                        </ul>
                     </div>
-                </div>
-                <div class="process-step">
-                    <div class="process-number">05</div>
-                    <div class="process-content">
-                        <div class="process-icon">
-                            <i data-lucide="trending-up" style="width: 28px; height: 28px;"></i>
+                    <div class="process-step">
+                        <div class="process-number">04</div>
+                        <div class="process-content">
+                            <div class="process-icon">
+                                <i data-lucide="rocket" style="width: 28px; height: 28px;"></i>
+                            </div>
+                            <h3>Pre-Production Validation e Go-Live</h3>
+                            <p>Load testing com auto-scaling, chaos engineering, penetration testing, criação de runbooks e deploy progressivo com canary release e rollback automático.</p>
+                            <ul class="process-deliverables">
+                                <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Load Test Report (10x traffic, auto-scaling validado)</li>
+                                <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Runbooks e Incident Response Playbooks</li>
+                                <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Penetration Test Report e Mitigation Plan</li>
+                            </ul>
                         </div>
-                        <h3>Suporte e Evolução</h3>
-                        <p>Monitoramento proativo 24/7, análise de tendências, otimização contínua, gestão de mudanças, atualizações preventivas e evolução da solução conforme crescimento do negócio. Parceria de longo prazo.</p>
-                        <ul class="process-deliverables">
-                            <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> SLA com Penalidades Contratuais</li>
-                            <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Relatórios Mensais de Performance</li>
-                            <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Roadmap de Evolução Contínua</li>
-                        </ul>
+                    </div>
+                    <div class="process-step">
+                        <div class="process-number">05</div>
+                        <div class="process-content">
+                            <div class="process-icon">
+                                <i data-lucide="refresh-cw" style="width: 28px; height: 28px;"></i>
+                            </div>
+                            <h3>Observability e Continuous Improvement</h3>
+                            <p>Monitoramento 24/7 com Prometheus, Grafana e ELK Stack, distributed tracing, alerting inteligente, análise de performance e post-mortem de incidents.</p>
+                            <ul class="process-deliverables">
+                                <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Dashboards Grafana com SLIs/SLOs tracking</li>
+                                <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Monthly Performance Reports (P95/P99, error budget)</li>
+                                <li><i data-lucide="check" style="width: 16px; height: 16px;"></i> Incident Post-Mortems e Action Items</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2849,7 +838,7 @@
                         </div>
                     </div>
                     <div class="faq-answer">
-                        <p>O investimento varia conforme as funcionalidades, design e integrações necessárias. Sites institucionais básicos começam a partir de R$ 3.000, enquanto projetos mais complexos com integrações e funcionalidades personalizadas podem variar. Entre em contato para um orçamento personalizado.</p>
+                        <p>O investimento é definido sob consulta, de acordo com as necessidades específicas do seu projeto. Analisamos o escopo, funcionalidades, design, integrações e complexidade para apresentar uma proposta personalizada e transparente. Entre em contato para discutirmos sua necessidade e elaborarmos um orçamento detalhado.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -2882,7 +871,7 @@
                         </div>
                     </div>
                     <div class="faq-answer">
-                        <p>Sim. Acreditamos que a transferência de conhecimento é essencial. Oferecemos treinamentos customizados em administração de banco de dados, otimização de queries, disaster recovery, e uso dos sistemas desenvolvidos. Os treinamentos podem ser presenciais ou remotos.</p>
+                        <p>Sim. Acreditamos que a transferência de conhecimento é essencial. Oferecemos treinamentos customizados em administração de banco de dados, otimização de queries, disaster recovery, e uso dos sistemas desenvolvidos. Os treinamentos são realizados remotamente, permitindo flexibilidade e agilidade no aprendizado.</p>
                     </div>
                 </div>
             </div>
@@ -2900,7 +889,7 @@
                         Solicitar Orçamento
                         <i data-lucide="arrow-right" style="width: 18px; height: 18px;"></i>
                     </a>
-                    <a href="https://wa.me/5547999999999" target="_blank" class="btn-secondary">
+                    <a href="https://wa.me/5511991105517" target="_blank" class="btn-secondary">
                         <i data-lucide="message-circle" style="width: 18px; height: 18px;"></i>
                         WhatsApp Direto
                     </a>
@@ -2931,28 +920,19 @@
                                 <p>[email protected]</p>
                             </div>
                         </a>
-                        <a href="https://wa.me/5547999999999" target="_blank" class="contact-method">
+                        <a href="https://wa.me/5511991105517" target="_blank" class="contact-method">
                             <div class="contact-method-icon">
                                 <i data-lucide="message-circle" style="width: 24px; height: 24px;"></i>
                             </div>
                             <div class="contact-method-text">
                                 <h4>WhatsApp</h4>
-                                <p>+55 (47) 99999-9999</p>
-                            </div>
-                        </a>
-                        <a href="https://linkedin.com/in/gabriel-morgado" target="_blank" class="contact-method">
-                            <div class="contact-method-icon">
-                                <i data-lucide="linkedin" style="width: 24px; height: 24px;"></i>
-                            </div>
-                            <div class="contact-method-text">
-                                <h4>LinkedIn</h4>
-                                <p>/in/gabriel-morgado</p>
+                                <p>+55 (11) 99110-5517</p>
                             </div>
                         </a>
                     </div>
                 </div>
                 <div class="contact-form-wrapper">
-                    <form class="contact-form" id="contactForm">
+                    <form class="contact-form" id="contactForm" action="https://formspree.io/f/xanyglqo" method="POST">
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="name">Nome Completo</label>
@@ -2999,8 +979,10 @@
             <div class="footer-main">
                 <div class="footer-brand">
                     <a href="#" class="nav-logo">
-                        <div class="nav-logo-icon">M</div>
-                        <span class="nav-logo-text">Morgado</span>
+                        <div class="nav-logo-icon">
+                            <img src="logos/Morgado Consultoria logo.png" alt="Morgado Consultoria Logo" loading="lazy">
+                        </div>
+                        <span class="nav-logo-text">Morgado Consultoria</span>
                     </a>
                     <p>Transformando dados em vantagem competitiva. Consultoria especializada em Banco de Dados, Desenvolvimento Web e Sistemas.</p>
                 </div>
@@ -3032,7 +1014,7 @@
             <div class="footer-bottom">
                 <p>&copy; <span id="currentYear"></span> Morgado Consultoria. Todos os direitos reservados.</p>
                 <div class="footer-social">
-                    <a href="https://linkedin.com/in/gabriel-morgado" target="_blank" aria-label="LinkedIn">
+                    <a href="https://linkedin.com/in/gabriel-morgado-s-merchor" target="_blank" aria-label="LinkedIn">
                         <i data-lucide="linkedin" style="width: 18px; height: 18px;"></i>
                     </a>
                     <a href="https://github.com/Morgado98" target="_blank" aria-label="GitHub">
@@ -3052,7 +1034,7 @@
     </button>
 
     <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/5547999999999?text=Olá! Gostaria de saber mais sobre os serviços da Morgado Consultoria."
+    <a href="https://wa.me/5511991105517?text=Olá! Gostaria de saber mais sobre os serviços da Morgado Consultoria."
        class="whatsapp-float"
        target="_blank"
        aria-label="Fale conosco pelo WhatsApp">

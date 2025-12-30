@@ -1,0 +1,37 @@
+# Arquivos do Sistema Operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores e IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node.js (caso adicione build tools no futuro)
+node_modules/
+npm-debug.log
+package-lock.json
+yarn.lock
+
+# Arquivos temporários
+*.tmp
+*.log
+*.bak
+*.cache
+
+# Arquivos de build (futuro)
+dist/
+build/
+*.min.css
+*.min.js
+
+# Arquivos sensíveis
+.env
+.env.local
+config.local.js
+
+# Claude Code
+.claude/

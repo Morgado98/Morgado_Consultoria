@@ -1,0 +1,113 @@
+/**
+ * ============================================================================
+ * MORGADO CONSULTORIA - VARIÁVEIS CSS
+ * ============================================================================
+ * Definição de cores, gradientes, shadows e outras variáveis do design system
+ * Versão: 2.0 Premium
+ * ============================================================================
+ */
+
+:root {
+    /* ========== Premium Dark Theme - Vermelho/Branco/Preto ========== */
+
+    /* Backgrounds */
+    --bg-primary: #000000;
+    --bg-secondary: #0a0a0a;
+    --bg-card: #121212;
+    --bg-card-hover: #1a1a1a;
+
+    /* Text Colors */
+    --text-primary: #ffffff;
+    --text-secondary: #b4b4b4;
+    --text-muted: #737373;
+
+    /* Red Palette - Cores principais da marca */
+    --red-primary: #DC143C;
+    --red-dark: #B91C1C;
+    --red-darker: #991B1B;
+    --red-light: #EF4444;
+    --red-accent: #F87171;
+
+    /* Accent Colors */
+    --accent-primary: var(--red-primary);
+    --accent-secondary: #ffffff;
+    --accent-tertiary: var(--red-dark);
+
+    /* Borders */
+    --border-color: #1f1f1f;
+    --border-light: #2a2a2a;
+    --border-accent: rgba(220, 20, 60, 0.3);
+
+    /* Gradients Premium */
+    --gradient-red-primary: linear-gradient(135deg, #DC143C 0%, #991B1B 100%);
+    --gradient-red-glow: linear-gradient(135deg, #DC143C 0%, #EF4444 50%, #DC143C 100%);
+    --gradient-dark: linear-gradient(180deg, #000000 0%, #0a0a0a 100%);
+    --gradient-overlay: linear-gradient(135deg, rgba(220, 20, 60, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%);
+
+    /* Shadows Premium com profundidade */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+    --shadow-xl: 0 12px 48px rgba(0, 0, 0, 0.6);
+    --shadow-red: 0 8px 32px rgba(220, 20, 60, 0.3);
+    --shadow-red-lg: 0 12px 48px rgba(220, 20, 60, 0.4);
+
+    /* Glow Effects */
+    --glow-red: 0 0 20px rgba(220, 20, 60, 0.5);
+    --glow-red-strong: 0 0 40px rgba(220, 20, 60, 0.6);
+
+    /* Main Gradient (used in buttons, etc) */
+    --gradient-1: linear-gradient(135deg, #DC143C 0%, #991B1B 100%);
+}
+
+/* ========== Light Theme ========== */
+[data-theme="light"] {
+    /* Backgrounds - Tons mais claros e agradáveis */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f3f5;
+
+    /* Text Colors - Melhor contraste */
+    --text-primary: #1a1a1a;
+    --text-secondary: #4a5568;
+    --text-muted: #6b7280;
+
+    /* Red Palette mantida */
+    --red-primary: #DC143C;
+    --red-dark: #B91C1C;
+    --red-darker: #991B1B;
+    --red-light: #EF4444;
+    --red-accent: #F87171;
+
+    /* Accent Colors */
+    --accent-primary: var(--red-primary);
+    --accent-secondary: #1a1a1a;
+    --accent-tertiary: var(--red-dark);
+
+    /* Borders - Mais sutis e elegantes */
+    --border-color: #e2e8f0;
+    --border-light: #f1f5f9;
+    --border-accent: rgba(220, 20, 60, 0.25);
+
+    /* Gradients */
+    --gradient-red-primary: linear-gradient(135deg, #DC143C 0%, #991B1B 100%);
+    --gradient-red-glow: linear-gradient(135deg, #DC143C 0%, #EF4444 50%, #DC143C 100%);
+    --gradient-dark: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+    --gradient-overlay: linear-gradient(135deg, rgba(220, 20, 60, 0.08) 0%, rgba(255, 255, 255, 0.9) 100%);
+
+    /* Main Gradient (used in buttons, etc) */
+    --gradient-1: linear-gradient(135deg, #DC143C 0%, #991B1B 100%);
+
+    /* Shadows - Mais sutis para light mode */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+    --shadow-xl: 0 12px 40px rgba(0, 0, 0, 0.15);
+    --shadow-red: 0 8px 24px rgba(220, 20, 60, 0.2);
+    --shadow-red-lg: 0 12px 40px rgba(220, 20, 60, 0.25);
+
+    /* Glow Effects */
+    --glow-red: 0 0 20px rgba(220, 20, 60, 0.35);
+    --glow-red-strong: 0 0 40px rgba(220, 20, 60, 0.45);
+}

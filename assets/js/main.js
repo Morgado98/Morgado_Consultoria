@@ -13,6 +13,7 @@
  * 8. Terminal Effects
  * 9. Parallax Effects
  * 10. FAQ Toggle
+ * 10.5. Process Tabs Toggle
  * 11. Project Modals
  * 12. Cookie Consent
  * 13. Utility Functions
@@ -162,28 +163,47 @@ if (backToTop) {
 const contactForm = document.getElementById('contactForm');
 
 if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        // Get form data
-        const formData = new FormData(contactForm);
-        const data = Object.fromEntries(formData);
+        // Get submit button
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
 
-        // Log form data (replace with API call to backend)
-        console.log('Form submitted:', data);
+        // Show loading state
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Enviando...';
 
-        // Show success message
-        alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+        try {
+            // Send form data to Formspree
+            const formData = new FormData(contactForm);
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
 
-        // Reset form
-        contactForm.reset();
-
-        // TODO: Implement actual backend integration
-        // Example: fetch('/api/contact', {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify(data)
-        // })
+            if (response.ok) {
+                // Success
+                alert('✅ Mensagem enviada com sucesso! Entraremos em contato em breve.');
+                contactForm.reset();
+            } else {
+                // Error
+                const data = await response.json();
+                alert('❌ Erro ao enviar mensagem. Por favor, tente novamente ou entre em contato via WhatsApp.');
+                console.error('Form submission error:', data);
+            }
+        } catch (error) {
+            // Network error
+            alert('❌ Erro de conexão. Por favor, verifique sua internet e tente novamente.');
+            console.error('Network error:', error);
+        } finally {
+            // Restore button state
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+        }
     });
 }
 
@@ -350,6 +370,36 @@ document.querySelectorAll('.faq-question').forEach(question => {
         }
 
         // Reinitialize icons
+        initializeLucideIcons();
+    });
+});
+
+
+// ============================================================================
+// 10.5. PROCESS TABS TOGGLE
+// ============================================================================
+
+/**
+ * Process Tabs Functionality
+ * Allows users to switch between Database and Development process views
+ */
+
+const processTabs = document.querySelectorAll('.process-tab');
+const processContents = document.querySelectorAll('.process-content-wrapper');
+
+processTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        const processType = tab.getAttribute('data-process');
+
+        // Remove active from all tabs and contents
+        processTabs.forEach(t => t.classList.remove('active'));
+        processContents.forEach(c => c.classList.remove('active'));
+
+        // Add active to clicked tab and corresponding content
+        tab.classList.add('active');
+        document.getElementById(`process-${processType}`).classList.add('active');
+
+        // Reinitialize icons after content change
         initializeLucideIcons();
     });
 });
@@ -651,19 +701,49 @@ if ('IntersectionObserver' in window) {
 }
 
 /**
- * Animate numeric counter value
- * @param {HTMLElement} element - The element to animate
- * @param {number} start - Starting value
- * @param {number} end - Ending value
- * @param {number} duration - Animation duration in milliseconds
+ * Enhanced Counter Animation with Better Detection
+ * Animates numbers when they become visible
  */
-function animateValue(element, start, end, duration) {
+
+const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+            entry.target.classList.add('counted');
+
+            // Extract number and suffix (like %, +, etc)
+            const text = entry.target.textContent.trim();
+            const numberMatch = text.match(/[\d.]+/);
+            const suffix = text.replace(/[\d.]/g, '').trim();
+
+            if (numberMatch) {
+                const endValue = parseFloat(numberMatch[0]);
+                const isDecimal = numberMatch[0].includes('.');
+
+                animateCounterValue(entry.target, 0, endValue, 2000, suffix, isDecimal);
+            }
+        }
+    });
+}, { threshold: 0.3 });
+
+/**
+ * Enhanced animate value function
+ */
+function animateCounterValue(element, start, end, duration, suffix = '', isDecimal = false) {
     let startTimestamp = null;
     const step = (timestamp) => {
         if (!startTimestamp) startTimestamp = timestamp;
         const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-        const value = Math.floor(progress * (end - start) + start);
-        element.textContent = value + (element.dataset.suffix || '');
+
+        // Easing function for smooth animation
+        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+        const value = easeOutQuart * (end - start) + start;
+
+        if (isDecimal) {
+            element.textContent = value.toFixed(2) + suffix;
+        } else {
+            element.textContent = Math.floor(value) + suffix;
+        }
+
         if (progress < 1) {
             window.requestAnimationFrame(step);
         }
@@ -671,28 +751,9 @@ function animateValue(element, start, end, duration) {
     window.requestAnimationFrame(step);
 }
 
-/**
- * Intersection Observer for Counter Animation
- * Animates stat counters when they become visible
- */
-
-const counterObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
-            entry.target.classList.add('counted');
-            const endValue = parseInt(entry.target.textContent);
-            entry.target.dataset.suffix = entry.target.textContent.replace(/[0-9]/g, '');
-            animateValue(entry.target, 0, endValue, 2000);
-        }
-    });
-}, { threshold: 0.5 });
-
-// Observe stat items for counter animation
-document.querySelectorAll('.stat-item').forEach(stat => {
-    const counterElement = stat.querySelector('[data-count]');
-    if (counterElement) {
-        counterObserver.observe(counterElement);
-    }
+// Observe result numbers for counter animation
+document.querySelectorAll('.result-number, .stat-number').forEach(numberElement => {
+    counterObserver.observe(numberElement);
 });
 
 /**
