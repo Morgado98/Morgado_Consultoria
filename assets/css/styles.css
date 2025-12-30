@@ -17,6 +17,9 @@
 
 html {
     scroll-behavior: smooth;
+    /* Mobile performance optimizations */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -26,6 +29,39 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     transition: background-color 0.3s ease, color 0.3s ease;
+    /* Mobile optimizations */
+    -webkit-tap-highlight-color: rgba(220, 20, 60, 0.2);
+    touch-action: manipulation;
+}
+
+/* Performance optimization: Reduce animations on low-end devices */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Optimize images for better mobile performance */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* GPU acceleration for smooth animations on mobile */
+.orb,
+.parallax-orb,
+.whatsapp-float,
+.back-to-top {
+    will-change: transform;
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 /* ========================================
@@ -611,30 +647,45 @@ section {
 
 .section-header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
+    padding: 0 1rem;
 }
 
 .section-label {
     display: inline-block;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: var(--accent-primary);
     text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 1rem;
+    letter-spacing: 3px;
+    margin-bottom: 1.25rem;
+    font-weight: 600;
+    position: relative;
+}
+
+.section-label::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 2px;
+    background: var(--accent-primary);
+    margin: 0.75rem auto 0;
 }
 
 .section-title {
-    font-size: clamp(2rem, 4vw, 2.5rem);
-    font-weight: 700;
-    margin-bottom: 1rem;
+    font-size: clamp(2.25rem, 4vw, 3rem);
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
 }
 
 .section-subtitle {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     color: var(--text-secondary);
-    max-width: 600px;
+    max-width: 650px;
     margin: 0 auto;
+    line-height: 1.7;
 }
 
 /* About Section */
@@ -2788,4 +2839,89 @@ section {
 
 [data-theme="dark"] .tech-icon img {
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+}
+
+/* ========================================
+   12. MOBILE PERFORMANCE OPTIMIZATIONS
+   ======================================== */
+
+/* Reduce heavy effects on mobile devices for better performance */
+@media (max-width: 768px) {
+    /* Reduce blur effect on orbs for better mobile performance */
+    .orb {
+        filter: blur(80px);
+        opacity: 0.3;
+    }
+
+    /* Simplify background grid on mobile */
+    .bg-grid {
+        background-size: 80px 80px;
+        opacity: 0.5;
+    }
+
+    /* Disable parallax effects on mobile */
+    .parallax-orb {
+        display: none;
+    }
+
+    /* Optimize animations for mobile */
+    .hero-terminal,
+    .service-card,
+    .portfolio-card,
+    .testimonial-card {
+        transition-duration: 0.2s;
+    }
+
+    /* Reduce box shadows on mobile */
+    .navbar.scrolled,
+    .service-card:hover,
+    .portfolio-card:hover,
+    .testimonial-card:hover,
+    .result-card:hover,
+    .tech-item:hover {
+        box-shadow: 0 4px 12px rgba(220, 20, 60, 0.15);
+    }
+
+    /* Simplify hover effects on mobile */
+    .service-card:hover,
+    .portfolio-card:hover,
+    .tech-item:hover {
+        transform: translateY(-4px);
+    }
+
+    /* Optimize font rendering on mobile */
+    body {
+        text-rendering: optimizeSpeed;
+    }
+
+    /* Reduce complex transitions */
+    * {
+        transition-timing-function: ease-out;
+    }
+}
+
+/* Extra small devices - further optimizations */
+@media (max-width: 480px) {
+    /* Further reduce blur on very small devices */
+    .orb {
+        filter: blur(60px);
+        opacity: 0.2;
+    }
+
+    /* Simplify animations on extra small screens */
+    .hero-terminal .terminal-line,
+    .stat-number,
+    .result-number {
+        animation: none;
+    }
+
+    /* Reduce padding for better space usage */
+    .section-container {
+        padding: 3rem 1rem;
+    }
+
+    /* Optimize images loading */
+    img {
+        image-rendering: -webkit-optimize-contrast;
+    }
 }
